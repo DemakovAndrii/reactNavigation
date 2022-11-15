@@ -1,11 +1,9 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native';
-// import {NavigationContainer} from '@react-navigation/native';
-// import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import test from '../../public/data//test.json';
+import test2 from '../../public/data//test2.json';
 
-const text = test[1];
-console.log(text);
+const text = test[0];
 
 const Home = ({navigation}) => {
   return (
@@ -18,11 +16,22 @@ const Home = ({navigation}) => {
         onPress={() =>
           navigation.navigate('About', {
             itemId: 1,
-            rrr: text,
             otherParam: 'anything you want here',
+            rrr: text,
           })
         }
       />
+      {test2.map(({name, index}) => (
+        <Button
+          title={name}
+          key={index}
+          onPress={() =>
+            navigation.navigate('Setting', {
+              param: name,
+            })
+          }
+        />
+      ))}
     </View>
   );
 };
